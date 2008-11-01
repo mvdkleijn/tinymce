@@ -1,24 +1,12 @@
 /**
  * @author Martijn van der Kleijn <martijn@vanderkleijn.net>
  * @copyright 2008 Martijn van der Kleijn
- * @version 1.0.0
+ * @version 2.0.0
  */
 
-/**
- ** Change this to point to the root url where Frog lives
- ** NO SLASH AT THE END!
- **/
- urlToFrog='';
-
-/*******************************************
- *** Don't change anything below this line!
- *******************************************/
-
-// Function to allow one JavaScript file to be included by another.
-function includeJavascript(jsFile) {
-    document.write('<script type="text/javascript" src="'
-    + jsFile + '"></script>'); 
-}
+/***********************************************
+ *** DO NOT CHANGE ANYTHING BELOW THIS LINE! ***
+ ***********************************************/
 
 // function to toggle tinymce editor based on the onchange event
 function toggleEditor(id, filter) {
@@ -57,7 +45,3 @@ var filt = filter;
   toggleEditor(textarea, filt);
 // END tinymce stuff
 }
-
-
-includeJavascript(urlToFrog+'/frog/plugins/tinymce/tinymce/jscripts/tiny_mce/tiny_mce.js');
-includeJavascript(urlToFrog+'/frog/plugins/tinymce/tiny_init.js');

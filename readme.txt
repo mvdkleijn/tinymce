@@ -6,6 +6,10 @@ The plugin uses an un-altered, stock TinyMCE download which can be found in the 
 
 == CHANGES ==
          
+v2.0.0 - Removed TinyMCE's tab in Frog backend
+         Moved plugin's settings DB table stuff into enable.php
+         Added a settings page
+
 v1.2.0 - Added a configuration/preferences tab to Frog's admin section.
          Added an option to also list HIDDEN pages that are unprotected in TinyMCE's link dropdown box.
 
