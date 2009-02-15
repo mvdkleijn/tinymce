@@ -1,57 +1,117 @@
 <?php
-        if (Flash::get('tinymcedbchecked') != 'true' && !checkInstallForDB()) {
-            if (installDB()) {
-                Flash::set('success', __('TinyMCE - This plugin\'s config database was created because it didn\'t exist yet.'));
-            }
-            else {
-               Flash::set('error', __('TinyMCE - This plugin\'s config database does not exist and couldn\'t be created! The plugin  should not be used!'));
-            }
-            Flash::set('tinymcedbchecked', 'true');
-            redirect(get_url('plugin/tinymce'));
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * The TinyMCE plugin provides the TinyMCE editor to Frog users.
+ *
+ * @package frog
+ * @subpackage plugin.tinymce
+ *
+ * @author Martijn van der Kleijn <martijn.niji@gmail.com>
+ * @version 2.0.0
+ * @since Frog version 0.9.4
+ * @license http://www.gnu.org/licenses/gpl.html GPL License
+ * @copyright Martijn van der Kleijn, 2008
+ */
+
+$version = Plugin::getSetting('version', 'tinymce');
+
+// Check if settings were found for tinymce
+if (!$version || $version == null) {
+    // Check if we're upgrading from a previous version.
+    $upgrade = checkForOldInstall();
+
+    if ($upgrade) {
+        // Retrieve the old settings.
+        $PDO = Record::getConnection();
+        $tablename = TABLE_PREFIX.'tinymce';
+
+        $sql_check = "SELECT COUNT(*) FROM '$tablename'";
+        $sql = "SELECT * FROM '$tablename'";
+
+        $result = $PDO->prepare($sql_check);
+        $result = $PDO->execute($sql_check);
+
+        // Checking if old tinymce table is OK
+        if ($result->fetchColumn() != 1) {
+            Flash::set('error', __('TinyMCE - upgrade needed, but unable to retrieve old settings!'));
+            return;
+        }
+
+        $result = $PDO->prepare($sql);
+        $result = $PDO->execute($sql);
+        $result = $PDO->fetchObject();
+
+        if ($result) {
+            $settings = array('version' => '2.0.0',
+                              'listpublished' => $result->listpublished,
+                              'listhidden' => $result->listhidden,
+                              'imagesdir' => $result->imagesdir,
+                              'imagesuri' => $result->imagesuri,
+                              'cssuri'=> $result->cssuri
+                             );
         }
         else {
-            $sql = "SELECT * FROM `".TABLE_PREFIX."tinymce` WHERE `id`=1";
-		    
-		    global $__FROG_CONN__;
-            $stmt = $__FROG_CONN__->prepare($sql);
-		    $stmt->execute($sql);
-        
-            $result = $stmt->fetchObject();
-		    
-		    // if ($stmt && $result != null) {      
-                $this->display('tinymce/views/index', array(
-                    'listpublished' => $result->listpublished,
-                    'listhidden' => $result->listhidden,
-                    'imagesdir' => $result->imagesdir,
-                    'imagesuri' => $result->imagesuri,
-                    'cssuri' => $result->cssuri
-                ));
-		    /* }   // Check removed due to possible conflict it generated on David's installation
-		    else {
-		        Flash::set('error', __('TinyMCE - Unable to retrieve configuration settings but database should be oke. Something is terribly wrong!'));
-		        redirect(get_url('setting'));
-		    }*/
-
+            Flash::set('error', __('TinyMCE - upgrade needed, but unable to retrieve old settings!'));
+            return;
         }
+    }
+    else {
+        $settings = array('version' => '2.0.0',
+                          'listpublished' => 1,
+                          'listhidden' => 0,
+                          'imagesdir' => '/home/user/www/public/images',
+                          'imagesuri' => '/public/images',
+                          'cssuri'=> '/public/themes/mylayout/mystylesheet.css'
+                         );
+    }
+
+    if (Plugin::setAllSettings($settings, 'tinymce')) {
+        if ($upgrade)
+            Flash::set('success', __('TinyMCE - plugin settings copied from old installation.'));
+        else
+            Flash::set('success', __('TinyMCE - plugin settings initialized.'));
+    }
+    else
+        Flash::set('error', __('TinyMCE - unable to store plugin settings!'));
+
+}
+// Settings for plugin were found.
+else {
+    $settings = Plugin::getAllSettings('tinymce');
+    $this->display('tinymce/views/settings', $settings);
+}
         
-function checkInstallForDB() {
-    global $__FROG_CONN__;
+/**
+ * This function checks to see if there is a valid old installation with regards to the DB.
+ * 
+ * @return boolean
+ */
+function checkForOldInstall() {
+    $tablename = TABLE_PREFIX.'tinymce';
     $PDO = Record::getConnection();
 
-    return $PDO->exec("SELECT version FROM ".TABLE_PREFIX."tinymce") !== false;
+    $sql = "SELECT version FROM '$tablename'";
+
+    $result = $PDO->exec($sql);
+
+    if ($result != null)
+        return true;
+    else
+        return false;
 }
 
-function installDB() {
-    $return = true;
-    $sql_create = 'CREATE TABLE `'.TABLE_PREFIX.'tinymce` (`version` VARCHAR( 10 ) NOT NULL , `listpublished` BOOL NOT NULL , `listhidden` BOOL NOT NULL , `imagesdir` VARCHAR( 255 ) NOT NULL , `imagesuri` VARCHAR( 255 ) NOT NULL , `cssuri` VARCHAR( 255 ) NOT NULL , `id` MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY)';
-    $sql_insert = "INSERT INTO `".TABLE_PREFIX."tinymce` (`version`,`listpublished`,`listhidden`,`imagesdir`,`imagesuri`,`cssuri`,`id`) VALUES ('1.2.0',1,0,'/home/user/www/public/images','/public/images','/public/layouts/mylayout/mystylesheet.css',NULL)";
-
-    global $__FROG_CONN__;
-    $PDO = Record::getConnection();
-
-    $return = $PDO->exec($sql_create) !== false;
-    $return = $PDO->exec($sql_insert) !== false;
-
-    return $return;
-}
 ?>

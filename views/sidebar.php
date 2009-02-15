@@ -1,4 +1,5 @@
 <p class="button"><a href="<?php echo get_url('plugin/tinymce/documentation'); ?>"><img src="<?php echo URL_PUBLIC; ?>frog/plugins/tinymce/images/documentation.png" align="middle" /><?php echo __('Documentation'); ?></a></p>
+<p class="button"><a href="<?php echo get_url('plugin/tinymce/settings'); ?>"><img src="<?php echo URL_PUBLIC; ?>frog/plugins/tinymce/images/settings.png" align="middle" /><?php echo __('Settings'); ?></a></p>
 <div class="box">
 <h2><?php echo __('TinyMCE Editor plugin');?></h2>
 <p>

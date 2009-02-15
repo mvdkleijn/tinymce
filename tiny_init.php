@@ -1,6 +1,15 @@
+<?php
+//
+// Please do not toucht the PHP codes!!
+//
+// The php in this file is to prevent you from having to manually include/change paths
+//
+
+$pluginDir = dirname($_SERVER['PHP_SELF']);
+
+?>
+
 tinyMCE.init({
-    //mode : "exact",
-    //elements: "part_0_content,part_1_content,part_2_content,part_3_content,part_4_content,part_5_content,part_6_content",
     mode : "none",
 	theme : "advanced",
 	plugins : "table,fullscreen,preview,contextmenu,advimage",
@@ -12,7 +21,7 @@ tinyMCE.init({
 	theme_advanced_statusbar_location : "bottom",
 	theme_advanced_resize_horizontal : false,
 	theme_advanced_resizing : true,
-	
+
 	// Some performance enhancements according to TinyMCE website
 	button_tile_map : true,
 
@@ -21,15 +30,14 @@ tinyMCE.init({
     //document_base_url : "/",
 
     //Example of how to add your stylesheet styles to the styles dropdown box in TinyMCE
-    theme_advanced_styles : "Normal text=normaltext, Align left=align-left, Align right=align-right",
+    //theme_advanced_styles : "Normal text=normaltext, Align left=align-left, Align right=align-right",
 
-    // Preview content in system's style
-    content_css : "/frog/frog/plugins/tinymce/config.php?g=css",
+    // Preview content in system\'s style
+    content_css : "<?php echo $pluginDir; ?>/config.php?g=css",
 
 	// Dropdown lists for link/image/media/template dialogs
-	external_image_list_url : "/frog/frog/plugins/tinymce/lists/image_list.php",
-	external_link_list_url : "/frog/frog/plugins/tinymce/lists/pages_list.php",
+	external_image_list_url : "<?php echo $pluginDir; ?>/lists/image_list.php",
+	external_link_list_url : "<?php echo $pluginDir; ?>/lists/pages_list.php",
 
 	extended_valid_elements : "a[name|href|target|title|onclick|style],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|style],hr[class|width|size|noshade|style],font[face|size|color|style],span[class|align|style]"
 });
-
