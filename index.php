@@ -36,7 +36,7 @@ Plugin::setInfos(array(
     'license'     => 'GPLv3',
     'author'      => 'Martijn van der Kleijn',
     'website'     => 'http://www.vanderkleijn.net/frog-cms.html',
-    'update_url'  => 'http://www.vanderkleijn.net/public/downloads/plugins/tinymce/update.xml',
+    'update_url'  => 'http://www.vanderkleijn.net/plugins.xml',
     'require_frog_version' => '0.9.5'
 ));
 
