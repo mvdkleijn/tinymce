@@ -1,60 +1,25 @@
 <?php
-
 require_once('../config.php');
 
+$dir_handle = @opendir($image_list_dir) or die("Unable to open $image_public_path");
+
 print 'var tinyMCEImageList = new Array(';
-
-function get_dir_iterative($dir = '.', $public_dir = '/', $exclude = array( 'cgi-bin', '.', '..' )) {
-    $exclude = array_flip($exclude);
-    if(!is_dir($dir)) {
-        return;
-    }
-    
-    $dh = opendir($dir);
-    
-    if(!$dh) {
-        return;
-    }
-
-    $stack = array($dh);
-    $level = 0;
-    $first = true;
-
-    while(count($stack)) {
-        if(false !== ( $file = readdir( $stack[0] ) ) ) {
-            if(!isset($exclude[$file])) {
-                print str_repeat('&nbsp;', $level * 4);
-                if(is_dir($dir . '/' . $file)) {
-                //    $dh = opendir($file . '/' . $dir);
-                //    if($dh) {
-                //        //print "<strong>$file</strong><br />\n";
-                //        array_unshift($stack, $dh);
-                //        ++$level;
-                //    }
-                }
-                else {
-                    $suffix = substr($file,(strlen($file)-4),4);
-                    if ($suffix == ".jpg" || $suffix == ".gif" || $suffix == ".png" || $suffix == ".bmp") {
-                        if ($first == false) {     // Check moved here to prevent extraneous commas, thanks sboots
-                            print ',';
-                        }
-                        if ($first == true) {
-                            $first = false;
-                        }
-                        print '["'.$file.'", "'.$public_dir.'/'.$file.'"]';
-                    }
-                }
-            }
-        }
-        else {
-            closedir(array_shift($stack));
-            --$level;
-        }
-    }
-}  
-
-get_dir_iterative($image_list_dir, $image_public_path);
-
+list_dir($dir_handle,$image_list_dir,$image_public_path,true);
 print ');';
 
+function list_dir($dir_handle,$path,$webpath,$first=false) {
+    while (false !== ($file = readdir($dir_handle))) {
+        $dir =$path.'/'.$file;
+        if(is_dir($dir) && $file != '.' && $file !='..' ) {
+            $handle = @opendir($dir) or die("unable to open file $file");
+            list_dir($handle, $dir, $webpath.'/'.$file);
+        }
+        elseif ($file != '.' && $file !='..') {
+            if (!$first)
+                print ',';
+            print '["'.$webpath.'/'.$file.'", "'.$webpath.'/'.$file.'"]';
+        }
+    }
+    closedir($dir_handle);
+}
 ?>

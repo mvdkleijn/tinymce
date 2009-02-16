@@ -3,8 +3,8 @@
 <div class="box">
 <h2><?php echo __('TinyMCE Editor plugin');?></h2>
 <p>
-<?php echo __('Plugin:')?> v1.2.0<br/>
-TinyMCE: v3.1.0.1
+<?php echo __('Plugin:')?> <?php echo Plugin::getSetting('version', 'tinymce'); ?><br/>
+TinyMCE: v3.2.1.1 (2008-11-27)
 </p>
 <p>
     <?php echo __('The TinyMCE editor plugin for Frog consists of a stock (unchanged) version of TinyMCE packaged with a number of supporting files.');?>
