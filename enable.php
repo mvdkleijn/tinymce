@@ -34,41 +34,48 @@ if (!$version || $version == null) {
     // Check if we're upgrading from a previous version.
     $upgrade = checkForOldInstall();
 
+    // Upgrading from previous installation
     if ($upgrade) {
         // Retrieve the old settings.
         $PDO = Record::getConnection();
         $tablename = TABLE_PREFIX.'tinymce';
 
-        $sql_check = "SELECT COUNT(*) FROM '$tablename'";
-        $sql = "SELECT * FROM '$tablename'";
+        $sql_check = "SELECT COUNT(*) FROM $tablename";
+        $sql = "SELECT * FROM $tablename";
 
-        $result = $PDO->prepare($sql_check);
-        $result = $PDO->execute($sql_check);
+        $result = $PDO->query($sql_check);
 
         // Checking if old tinymce table is OK
-        if ($result->fetchColumn() != 1) {
-            Flash::set('error', __('TinyMCE - upgrade needed, but unable to retrieve old settings!'));
+        if ($result && $result->fetchColumn() != 1) {
+            $result->closeCursor();
+            Flash::set('error', __('TinyMCE - upgrade needed, but invalid upgrade scenario detected!'));
+            return;
+        }
+        
+        if (!$result) {
+            Flash::set('error', __('TinyMCE - upgrade need detected earlier, but unable to retrieve table information!'));
             return;
         }
 
-        $result = $PDO->prepare($sql);
-        $result = $PDO->execute($sql);
-        $result = $PDO->fetchObject();
+        // Fetch the old installation's records.
+        $result = $PDO->query($sql);
 
-        if ($result) {
+        if ($result && $row = $result->fetchObject()) {
             $settings = array('version' => '2.0.0',
-                              'listpublished' => $result->listpublished,
-                              'listhidden' => $result->listhidden,
-                              'imagesdir' => $result->imagesdir,
-                              'imagesuri' => $result->imagesuri,
-                              'cssuri'=> $result->cssuri
+                              'listpublished' => $row->listpublished,
+                              'listhidden' => $row->listhidden,
+                              'imagesdir' => $row->imagesdir,
+                              'imagesuri' => $row->imagesuri,
+                              'cssuri'=> $row->cssuri
                              );
+            $result->closeCursor();
         }
         else {
             Flash::set('error', __('TinyMCE - upgrade needed, but unable to retrieve old settings!'));
             return;
         }
     }
+    // This is a clean install.
     else {
         $settings = array('version' => '2.0.0',
                           'listpublished' => 1,
@@ -79,6 +86,7 @@ if (!$version || $version == null) {
                          );
     }
 
+    // Store settings.
     if (Plugin::setAllSettings($settings, 'tinymce')) {
         if ($upgrade)
             Flash::set('success', __('TinyMCE - plugin settings copied from old installation.'));
@@ -88,11 +96,6 @@ if (!$version || $version == null) {
     else
         Flash::set('error', __('TinyMCE - unable to store plugin settings!'));
 
-}
-// Settings for plugin were found.
-else {
-    $settings = Plugin::getAllSettings('tinymce');
-    $this->display('tinymce/views/settings', $settings);
 }
         
 /**
@@ -104,12 +107,14 @@ function checkForOldInstall() {
     $tablename = TABLE_PREFIX.'tinymce';
     $PDO = Record::getConnection();
 
-    $sql = "SELECT version FROM '$tablename'";
+    $sql = "SELECT COUNT(*) FROM $tablename";
 
-    $result = $PDO->exec($sql);
+    $result = $PDO->query($sql);
 
-    if ($result != null)
+    if ($result != null) {
+        $result->closeCursor();
         return true;
+    }
     else
         return false;
 }
