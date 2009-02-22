@@ -5,36 +5,51 @@ function substrtruncate($string, $needle) {
 }
 
 require_once(substrtruncate($_SERVER['SCRIPT_FILENAME'], '/plugins').'../config.php');
+require_once(substrtruncate($_SERVER['SCRIPT_FILENAME'], '/plugins').'/Framework.php');
 
 $image_list_dir = null;
 $image_public_path = null;
 $preview_css = null;
 $listhidden = null;
 
-$sql = "SELECT * FROM `".TABLE_PREFIX."tinymce` WHERE `id`=1";
-		    
-function connect() {
-    $db_settings = explode('=',DB_DSN);
-    $db_name = explode(';' , $db_settings[1]);
-    $db_name = $db_name[0];
-    $db_host = $db_settings[2];
-    $db_user = DB_USER;
-    $db_pass = DB_PASS;
+$tablename = TABLE_PREFIX.'plugin_settings';
 
-    $con = mysql_connect($db_host, $db_user, $db_pass);
-    $selectdb = mysql_select_db($db_name, $con);
-    if(!$selectdb){
-        die('Incorect');
+if (USE_PDO) {
+    try {
+        $PDO = new PDO(DB_DSN, DB_USER, DB_PASS);
     }
+    catch (PDOException $error) {
+        die('DB Connection failed: '.$error->getMessage());
+    }
+
+    if ($PDO->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql')
+        $PDO->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
 }
-connect();
-$results = mysql_query($sql) or die ("Error in query: $sql. " . mysql_error()); 
-		    
-if ($results && $result = mysql_fetch_array($results)) {      
-    $image_list_dir = $result['imagesdir'];
-    $image_public_path = $result['imagesuri'];
-    $preview_css = $result['cssuri'];
-    $listhidden = $result['listhidden'];
+else {
+    require_once(substrtruncate($_SERVER['SCRIPT_FILENAME'], '/plugins').'/libraries/DoLite.php');
+    $PDO = new DoLite(DB_DSN, DB_USER, DB_PASS);
+}
+
+Record::connection($PDO);
+$PDO = Record::getConnection();
+$PDO->exec("set names 'utf8'");
+
+$sql = "SELECT name,value FROM $tablename WHERE plugin_id='tinymce'";
+
+$settings = array();
+
+$stmt = $PDO->prepare($sql);
+$stmt->execute();
+
+while ($obj = $stmt->fetchObject()) {
+    $settings[$obj->name] = $obj->value;
+}
+
+if ($settings) {
+    $image_list_dir = $settings['imagesdir'];
+    $image_public_path = $settings['imagesuri'];
+    $preview_css = $settings['cssuri'];
+    $listhidden = $settings['listhidden'];
 }
 else {
     $image_list_dir = '';
