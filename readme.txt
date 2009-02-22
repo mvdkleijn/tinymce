@@ -1,14 +1,17 @@
 == TinyMCE plugin for Frog ==
 
 This plugin was created by Martijn van der Kleijn (www.vanderkleijn.net) for the Frog CMS (www.madebyfrog.com).
-Development of the plugin is based on the latest stable Frog version, in this case v0.9.2.
 The plugin uses an un-altered, stock TinyMCE download which can be found in the tinymce subdirectory of the plugin.
 
 == CHANGES ==
          
-v2.0.0 - Removed TinyMCE's tab in Frog backend
-         Moved plugin's settings DB table stuff into enable.php
-         Added a settings page
+v2.0.0 - note: requires minimum Frog version 0.9.5
+
++ Added a settings page
++ Added upgrade system
+. Moved settings into new plugin_settings table
+. Removed TinyMCE's tab in Frog backend
+. Removed need for manual configuration
 
 v1.2.0 - Added a configuration/preferences tab to Frog's admin section.
          Added an option to also list HIDDEN pages that are unprotected in TinyMCE's link dropdown box.
