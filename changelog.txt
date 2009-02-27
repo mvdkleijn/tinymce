@@ -1,0 +1,57 @@
+FROG CMS - Change Log
+
+======
+Sigla:
++ enhancement, addition
+- bug fix
+. other development
+======
+
+2.0.0 - released 2009-03-??
+
+NOTE: requires minimum Frog version 0.9.5
+
++ Added a settings page
++ Added upgrade system
++ Added changelog.txt
+- Fixed comma bug in images_list.php
+. Updated readme.txt and added changelog.txt
+. Moved settings into new plugin_settings table
+. Removed TinyMCE's tab in Frog backend
+. Removed need for manual configuration
+
+1.2.0 - ??
+
++ Added a configuration/preferences tab to Frog's admin section.
++ Added an option to also list HIDDEN pages that are unprotected in TinyMCE's link dropdown box.
+
+1.1.0 - ??
+
++ Added dropdown in-frog pages selector for easy linking
+  The dropdown currently only shows PUBLISHED pages, when desired, I can add HIDDEN or even all aswell.
+  You could also edit the SQL yourself, it's in lists/pages_list.php
++ Added small performance tweak to tiny_init.js based on TinyMCE website (button_tile_map : true)
+. Updated to the latest TinyMCE version (from 3.0.5 to 3.1.0.1)
+
+1.0.0 - ??
+
+- Fixed a small problem with the default configuration not allowing alignment of images.
+- Fixed the "use your own stylesheet" function so TinyMCE provides true WYSIWYG functionality.
+. Updated the readme layout.
+
+0.0.6 - ??
+
++ Possibility to use custom CSS for editing and preview.
+  Your mileage with that might vary as it seems a not-so-stable function within TinyMCE.
+- Minor fixes and one fix for TinyMCE itself.
+
+0.0.5 - ??
+
++ Added dropdown image selector.
+- Fixed some minor problems.
+. Made it so tinymce only appears on textareas in the "Pages" section.
+
+0.0.1 - ??
+
++ Initial release.
+
