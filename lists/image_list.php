@@ -17,6 +17,9 @@ function list_dir($dir_handle,$path,$webpath,$first=false) {
         elseif ($file != '.' && $file !='..') {
             if (!$first)
                 print ',';
+            else
+                $first = false;
+
             print '["'.$webpath.'/'.$file.'", "'.$webpath.'/'.$file.'"]';
         }
     }
