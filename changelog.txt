@@ -12,8 +12,8 @@ Sigla:
 NOTE: requires Wolf CMS version 0.5.5
 
 - Fixed comma bug in images_list.php
-
-
+. Updated for Wolf CMS 0.5.5
+. Cleaned up code
 
 
  Pre Wolf CMS releases
