@@ -1,6 +1,10 @@
 <?php
-
 /*
+ * TinyMCE plugin for Wolf CMS. <http://www.wolfcms.org>
+ * Copyright (C) 2008,2009 Martijn van der Kleijn <martijn.niji@gmail.com>
+ *
+ * This file is part of the TinyMCE plugin for Wolf CMS.
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -16,28 +20,28 @@
  */
 
 /**
- * The TinyMCE plugin provides the TinyMCE editor to Frog users.
+ * The TinyMCE plugin provides the TinyMCE editor to Wolf CMS users.
  *
- * @package frog
+ * @package wolf
  * @subpackage plugin.tinymce
  *
  * @author Martijn van der Kleijn <martijn.niji@gmail.com>
- * @version 2.0.0
- * @since Frog version 0.9.4
+ * @version 3.0.0
+ * @since Wolf version 0.5.5
  * @license http://www.gnu.org/licenses/gpl.html GPL License
- * @copyright Martijn van der Kleijn, 2008
+ * @copyright Martijn van der Kleijn, 2008,2009
  */
 
 Plugin::setInfos(array(
     'id'          => 'tinymce',
     'title'       => 'TinyMCE Editor',
     'description' => 'Allows you to use the TinyMCE text editor.',
-    'version'     => '2.0.0',
+    'version'     => '3.0.0',
     'license'     => 'GPLv3',
     'author'      => 'Martijn van der Kleijn',
-    'website'     => 'http://www.vanderkleijn.net/frog-cms.html',
+    'website'     => 'http://www.vanderkleijn.net/wolf-cms.html',
     'update_url'  => 'http://www.vanderkleijn.net/plugins.xml',
-    'require_frog_version' => '0.9.5'
+    'require_wolf_version' => '0.5.5'
 ));
 
 Filter::add('tinymce', 'tinymce/filter_tinymce.php');

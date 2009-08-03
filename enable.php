@@ -1,5 +1,10 @@
 <?php
 /*
+ * TinyMCE plugin for Wolf CMS. <http://www.wolfcms.org>
+ * Copyright (C) 2008,2009 Martijn van der Kleijn <martijn.niji@gmail.com>
+ *
+ * This file is part of the TinyMCE plugin for Wolf CMS.
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -15,16 +20,16 @@
  */
 
 /**
- * The TinyMCE plugin provides the TinyMCE editor to Frog users.
+ * The TinyMCE plugin provides the TinyMCE editor to Wolf CMS users.
  *
- * @package frog
+ * @package wolf
  * @subpackage plugin.tinymce
  *
  * @author Martijn van der Kleijn <martijn.niji@gmail.com>
- * @version 2.0.0
- * @since Frog version 0.9.4
+ * @version 3.0.0
+ * @since Wolf version 0.5.5
  * @license http://www.gnu.org/licenses/gpl.html GPL License
- * @copyright Martijn van der Kleijn, 2008
+ * @copyright Martijn van der Kleijn, 2008,2009
  */
 
 $version = Plugin::getSetting('version', 'tinymce');
@@ -61,7 +66,7 @@ if (!$version || $version == null) {
         $result = $PDO->query($sql);
 
         if ($result && $row = $result->fetchObject()) {
-            $settings = array('version' => '2.0.0',
+            $settings = array('version' => '3.0.0',
                               'listpublished' => $row->listpublished,
                               'listhidden' => $row->listhidden,
                               'imagesdir' => $row->imagesdir,
@@ -77,7 +82,7 @@ if (!$version || $version == null) {
     }
     // This is a clean install.
     else {
-        $settings = array('version' => '2.0.0',
+        $settings = array('version' => '3.0.0',
                           'listpublished' => 1,
                           'listhidden' => 0,
                           'imagesdir' => '/home/user/www/public/images',
@@ -96,6 +101,16 @@ if (!$version || $version == null) {
     else
         Flash::set('error', __('TinyMCE - unable to store plugin settings!'));
 
+}
+else {  // Found an old post-2.0.0 RC1 install
+    $settings = Plugin::getAllSettings('tinymce');
+    $settings['version'] = '3.0.0';
+
+    // Store settings.
+    if (Plugin::setAllSettings($settings, 'tinymce'))
+        Flash::set('success', __('TinyMCE - plugin settings updated.'));
+    else
+        Flash::set('error', __('TinyMCE - unable to store plugin settings!'));
 }
         
 /**

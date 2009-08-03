@@ -1,4 +1,4 @@
-FROG CMS - Change Log
+Wolf CMS - TinyMCE plugin - Change Log
 
 ======
 Sigla:
@@ -7,14 +7,23 @@ Sigla:
 . other development
 ======
 
-2.0.0 - released 2009-03-??
+3.0.0 - released 2009-08-30
 
-NOTE: requires minimum Frog version 0.9.5
+NOTE: requires Wolf CMS version 0.5.5
+
+- Fixed comma bug in images_list.php
+
+
+
+
+ Pre Wolf CMS releases
+=======================
+
+2.0.0 RC1 - ??
 
 + Added a settings page
 + Added upgrade system
 + Added changelog.txt
-- Fixed comma bug in images_list.php
 . Updated readme.txt and added changelog.txt
 . Moved settings into new plugin_settings table
 . Removed TinyMCE's tab in Frog backend

@@ -1,6 +1,6 @@
 <?php
 //
-// Please do not toucht the PHP codes!!
+// Please do not touch the PHP codes!!
 //
 // The php in this file is to prevent you from having to manually include/change paths
 //

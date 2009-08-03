@@ -1,7 +1,7 @@
 /**
- * @author Martijn van der Kleijn <martijn@vanderkleijn.net>
- * @copyright 2008 Martijn van der Kleijn
- * @version 2.0.0
+ * @author Martijn van der Kleijn <martijn.niji@gmail.com>
+ * @copyright 2008, 2009 Martijn van der Kleijn
+ * @version 3.0.0
  */
 
 /***********************************************

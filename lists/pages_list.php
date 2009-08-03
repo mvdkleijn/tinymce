@@ -1,9 +1,25 @@
 <?php
-
-require_once('../config.php');
-require_once('../../../../config.php');
-
-error_reporting(E_ALL);
+/*
+ * TinyMCE plugin for Wolf CMS. <http://www.wolfcms.org>
+ * Copyright (C) 2008,2009 Martijn van der Kleijn <martijn.niji@gmail.com>
+ *
+ * This file is part of the TinyMCE plugin for Wolf CMS.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+(include_once '../config.php') or die('TinyMCE plugin - unable to load config file.');
+(include_once '../../../../config.php') or die('TinyMCE plugin - unable to load Wolf CMS config file.');
 
 function startsWith($Haystack, $Needle){
     return strpos($Haystack, $Needle) === 0;
@@ -30,8 +46,9 @@ function dumpChildren($listhidden = 1, $parent_title = '', $root = 1, $slug = ''
     $stmt->execute();
 
     while ($result = $stmt->fetchObject()) {
-        if ($root > 1)
+        if ($root > 1) {
             echo ',';
+        }
         echo '["'.($result->title == '' ? '' : $parent_title.$result->title).'", "'.URL_PUBLIC.($result->slug == '' ? '' : $slug.$result->slug.URL_SUFFIX).'"]';
         $slug = $slug.$result->slug;
         $parent_title = $parent_title.$result->title;
@@ -49,8 +66,8 @@ function dumpChildren($listhidden = 1, $parent_title = '', $root = 1, $slug = ''
     }
 }
 
-print 'var tinyMCELinkList = new Array(';
+echo 'var tinyMCELinkList = new Array(';
 dumpChildren($listhidden);
-print ');';
+echo ');';
 
 ?>

@@ -1,6 +1,6 @@
-== TinyMCE plugin for Frog ==
+== TinyMCE plugin for Wolf CMS ==
 
-This plugin was created by Martijn van der Kleijn (www.vanderkleijn.net) for Frog CMS (www.madebyfrog.com).
+This plugin was created by Martijn van der Kleijn (www.vanderkleijn.net) for Wolf CMS (www.wolfcms.org).
 The plugin uses an un-altered, stock TinyMCE download which can be found in the tinymce subdirectory of the plugin.
 
 For TinyMCE itself, see http://tinymce.moxiecode.com
@@ -17,9 +17,9 @@ When upgrading this plugin, here's some tips to help you out:
 
 You can install this plugin in 3 easy steps.
 
-1 - Unzip and upload this plugin to the Frog plugins directory.
+1 - Unzip and upload this plugin to the Wolf CMS plugins directory.
 
-2 - Access the Frog Administration screen and activate the plugin.
+2 - Access the Wolf CMS Administration screen and activate the plugin.
 
 3 - Refresh/reload the screen and click on the "settings" link behind the TinyMCE plugin's listing.
     Please check/fill in the various paths and click on the save button.

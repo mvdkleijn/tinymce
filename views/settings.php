@@ -27,7 +27,7 @@
             <tr>
                 <td class="label"><label for="imagesuri"><?php echo __('URI to images:');?> </label></td>
                 <td class="field"><input name="imagesuri" type="text" size="35" maxsize="255" value="<?php echo $imagesuri;?>"/></td>
-                <td class="help"><?php echo __('Relative URI to images depending on where Frog was installed.<br/>For example: <code>/public/images</code>');?></td>
+                <td class="help"><?php echo __('Relative URI to images depending on where Wolf CMS was installed.<br/>For example: <code>/public/images</code>');?></td>
             </tr>
         </table>
     </fieldset>

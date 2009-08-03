@@ -4,7 +4,7 @@
 </p>
 <h3><?php echo __('Internal pages listing');?></h3>
 <p>
-<?php echo __('This feature allows you to easily link to pages in Frog from within the TinyMCE editor.');?>
+<?php echo __('This feature allows you to easily link to pages in Wolf CMS from within the TinyMCE editor.');?>
 </p>
 <ul style="list-style: square inside none; font-size: 0.8em;">
 <li><?php echo __('Edit a page using the TinyMCE editor.');?></li>
@@ -14,7 +14,7 @@
 <p><?php echo __('In the popup that appears: '); ?></p>
 <ul style="list-style: square inside none; font-size: 0.8em;">
 <li><?php echo __('Below the "Link URL" box where you would normally type in the URL, you will find a "Link list" dropdown box.');?></li>
-<li><?php echo __('Click on the dropdown box and select an internal Frog page where you want to link to.');?></li>
+<li><?php echo __('Click on the dropdown box and select an internal Wolf CMS page where you want to link to.');?></li>
 <li><?php echo __('Click "insert" and you are done.');?></li>
 </ul>
 <h3><?php echo __('Images listing example');?></h3>
