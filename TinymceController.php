@@ -70,7 +70,6 @@ class TinyMCEController extends PluginController {
     public function save() {
         $tablename = TABLE_PREFIX.'tinymce';
         
-        //$listpublished = mysql_escape_string($_POST['listpublished']);
         if (!array_key_exists('listhidden', $_POST))
             $listhidden = '0';
         else
