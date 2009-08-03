@@ -23,7 +23,7 @@ return array(
 'Preview function'                       => 'Preview functie',
 'URI to CSS file:'                       => 'URI naar CSS bestand:',
 'TinyMCE Editor plugin'                  => 'TinyMCE Editor plugin',
-'Plugin:'                                => 'Plugin:',
+'Plugin'                                 => 'Plugin',
 'Homepage:'                              => 'Homepage:',
 'Frog TinyMCE plugin'                    => 'Frog TinyMCE plugin',
 'TinyMCE itself'                         => 'TinyMCE zelf',
