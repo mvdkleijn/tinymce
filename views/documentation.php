@@ -18,6 +18,7 @@
 <li><?php echo __('Click "insert" and you are done.');?></li>
 </ul>
 <h3><?php echo __('Images listing example');?></h3>
+<p><strong><?php echo __('Note'); ?>:</strong> <?php echo __('The images listing dropdown box only appears when there are images in the directory you specified.'); ?></p>
 <ul style="list-style: square inside none; font-size: 0.8em;">
 <li><?php echo __('Edit a page using the TinyMCE editor.');?></li>
 <li><?php echo __('Click on the "insert/edit image" button in the TinyMCE toolbar which looks like a small tree.');?></li>
