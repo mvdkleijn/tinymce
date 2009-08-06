@@ -45,11 +45,18 @@ function dumpChildren($listhidden = 1, $parent_title = '', $root = 1, $slug = ''
     $stmt = $PDO->prepare($sql);
     $stmt->execute();
 
+    $base_url = URL_PUBLIC;
+
+    // Make sure we support USE_MOD_REWRITE
+    if (defined('USE_MOD_REWRITE') && !USE_MOD_REWRITE) {
+        $base_url .= '?';
+    }
+
     while ($result = $stmt->fetchObject()) {
         if ($root > 1) {
             echo ',';
         }
-        echo '["'.($result->title == '' ? '' : $parent_title.$result->title).'", "'.URL_PUBLIC.($result->slug == '' ? '' : $slug.$result->slug.URL_SUFFIX).'"]';
+        echo '["'.($result->title == '' ? '' : $parent_title.$result->title).'", "'.$base_url.($result->slug == '' ? '' : $slug.$result->slug.URL_SUFFIX).'"]';
         $slug = $slug.$result->slug;
         $parent_title = $parent_title.$result->title;
     }

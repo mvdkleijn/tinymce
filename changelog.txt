@@ -12,6 +12,7 @@ Sigla:
 NOTE: requires Wolf CMS version 0.5.5
 
 - Fixed comma bug in images_list.php
+. Updated TinyMCE to version 3.2.5
 . Updated for Wolf CMS 0.5.5
 . Cleaned up code
 
