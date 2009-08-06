@@ -4,7 +4,7 @@
 <h2><?php echo __('TinyMCE Editor plugin');?></h2>
 <p>
 <?php echo __('Plugin').': '.Plugin::getSetting('version', 'tinymce'); ?><br/>
-TinyMCE: v3.2.1.1 (2008-11-27)
+TinyMCE: v3.2.5 (2009-06-29)
 </p>
 <p>
     <?php echo __('The TinyMCE editor plugin consists of a stock (unchanged) version of TinyMCE packaged with a number of supporting files.');?>
