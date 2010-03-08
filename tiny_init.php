@@ -29,6 +29,8 @@ tinyMCE.init({
     relative_urls : false,
     //document_base_url : "/",
 
+    file_browser_callback : "tinyBrowser",
+
     //Example of how to add your stylesheet styles to the styles dropdown box in TinyMCE
     //theme_advanced_styles : "Normal text=normaltext, Align left=align-left, Align right=align-right",
 
@@ -36,8 +38,12 @@ tinyMCE.init({
     content_css : "<?php echo $pluginDir; ?>/config.php?g=css",
 
 	// Dropdown lists for link/image/media/template dialogs
-	external_image_list_url : "<?php echo $pluginDir; ?>/lists/image_list.php",
+	//external_image_list_url : "<?php echo $pluginDir; ?>/lists/image_list.php",
 	external_link_list_url : "<?php echo $pluginDir; ?>/lists/pages_list.php",
 
 	extended_valid_elements : "a[name|href|target|title|onclick|style],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|style],hr[class|width|size|noshade|style],font[face|size|color|style],span[class|align|style]"
 });
+
+<?php
+include dirname(__FILE__).'/tinymce/jscripts/tiny_mce/plugins/tinybrowser/tb_tinymce.js.php';
+?>
