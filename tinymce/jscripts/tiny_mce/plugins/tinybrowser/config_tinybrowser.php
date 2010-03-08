@@ -18,7 +18,7 @@ TinyBrowser 1.41 - A TinyMCE file browser (C) 2008  Bryn Jones
 */
 
 // switch off error handling, to use custom handler
-error_reporting(0); 
+error_reporting(0);
 
 // set script time out higher, to help with thumbnail generation
 set_time_limit(240);
@@ -44,17 +44,17 @@ $tinybrowser['integration'] = 'tinymce'; // Possible values: 'tinymce', 'fckedit
 $tinybrowser['docroot'] = 'http://localhost/wolfcms/';
 
 // Folder permissions for Unix servers only
-$tinybrowser['unixpermissions'] = 0777;
+$tinybrowser['unixpermissions'] = 0755;
 
 // File upload paths (set to absolute by default)
-$tinybrowser['path']['image'] = '/var/www/wolfcms/public/images/'; // Image files location - also creates a '_thumbs' subdirectory within this path to hold the image thumbnails
-$tinybrowser['path']['media'] = '/var/www/wolfcms/public/media/'; // Media files location
-$tinybrowser['path']['file']  = '/var/www/wolfcms/public/files/'; // Other files location
+$tinybrowser['path']['image'] = '/var/www/wolfcms/public/tb/images/'; // Image files location - also creates a '_thumbs' subdirectory within this path to hold the image thumbnails
+$tinybrowser['path']['media'] = '/var/www/wolfcms/public/tb/media/'; // Media files location
+$tinybrowser['path']['file']  = '/var/www/wolfcms/public/tb/files/'; // Other files location
 
 // File link paths - these are the paths that get passed back to TinyMCE or your application (set to equal the upload path by default)
-$tinybrowser['link']['image'] = $tinybrowser['path']['image']; // Image links
-$tinybrowser['link']['media'] = $tinybrowser['path']['media']; // Media links
-$tinybrowser['link']['file']  = $tinybrowser['path']['file']; // Other file links
+$tinybrowser['link']['image'] = '/wolfcms/public/tb/images/'; //$tinybrowser['path']['image']; // Image links
+$tinybrowser['link']['media'] = '/wolfcms/public/tb/media/'; //$tinybrowser['path']['media']; // Media links
+$tinybrowser['link']['file']  = '/wolfcms/public/tb/files/'; //$tinybrowser['path']['file']; // Other file links
 
 // File upload size limit (0 is unlimited)
 $tinybrowser['maxsize']['image'] = 0; // Image file maximum size

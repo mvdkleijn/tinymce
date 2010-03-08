@@ -2,7 +2,7 @@
 // *************************CREATE FOLDER**********************************
 function createfolder($dir,$perm) {
 is_dir(dirname($dir)) || createfolder(dirname($dir), $perm);
-    return is_dir($dir) || @mkdir($dir, $perm);
+    return is_dir($dir) || @mkdir($dir, $perm, true);
 }
 
 // *************************VALIDATE FILE EXTENSIONS**********************************
