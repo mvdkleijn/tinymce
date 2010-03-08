@@ -12,7 +12,7 @@ $pluginDir = dirname($_SERVER['PHP_SELF']);
 tinyMCE.init({
     mode : "none",
 	theme : "advanced",
-	plugins : "table,fullscreen,preview,contextmenu,advimage",
+	plugins : "table,fullscreen,preview,contextmenu,advimage,codeprotect",
 	theme_advanced_buttons1 : "bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright, justifyfull,bullist,numlist,undo,redo,link,unlink,|,image,styleselect,formatselect,|,fullscreen,code",
 	theme_advanced_buttons2 : "tablecontrols,|,hr,removeformat,|,outdent,indent,blockquote,|,preview",
 	theme_advanced_buttons3 : "",
