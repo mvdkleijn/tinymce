@@ -71,7 +71,24 @@ if (!$version || $version == null) {
                               'listhidden' => $row->listhidden,
                               'imagesdir' => $row->imagesdir,
                               'imagesuri' => $row->imagesuri,
-                              'cssuri'=> $row->cssuri
+                              'cssuri'=> $row->cssuri,
+                              'tb_obfuscate' => 'sukthvgnhgliuhgldutnvlru',
+                              'tb_docroot' => '/var/www',
+                              'tb_unixpermissions' => '0755',
+                              'tb_imagepath' => '/wolfcms/public/images/',
+                              'tb_mediapath' => '/wolfcms/public/media/',
+                              'tb_filepath' => '/wolfcms/public/files/',
+                              'tb_maximagesize' => '0',
+                              'tb_maxmediasize' => '0',
+                              'tb_maxfilesize' => '0',
+                              'tb_autoresizewidth' => '0',
+                              'tb_autoresizeheight' => '0',
+                              'tb_thumbsize' => '80',
+                              'tb_imagequality' => '80',
+                              'tb_thumbquality' => '80',
+                              'tb_allowedimagestypes' => '*.jpg, *.jpeg, *.gif, *.png',
+                              'tb_allowedmediatypes' => '*.swf, *.dcr, *.mov, *.qt, *.mpg, *.mp3, *.mp4, *.mpeg, *.avi, *.wmv, *.wm, *.asf, *.asx, *.wmx, *.wvx, *.rm, *.ra, *.ram',
+                              'tb_allowedfiletypes' => '*.*'
                              );
             $result->closeCursor();
         }
@@ -87,7 +104,24 @@ if (!$version || $version == null) {
                           'listhidden' => 0,
                           'imagesdir' => '/home/user/www/public/images',
                           'imagesuri' => '/public/images',
-                          'cssuri'=> '/public/themes/mylayout/mystylesheet.css'
+                          'cssuri'=> '/public/themes/mylayout/mystylesheet.css',
+                          'tb_obfuscate' => 'sukthvgnhgliuhgldutnvlru',
+                          'tb_docroot' => '/var/www',
+                          'tb_unixpermissions' => 0755,
+                          'tb_imagepath' => '/wolfcms/public/images/',
+                          'tb_mediapath' => '/wolfcms/public/media/',
+                          'tb_filepath' => '/wolfcms/public/files/',
+                          'tb_maximagesize' => '0',
+                          'tb_maxmediasize' => '0',
+                          'tb_maxfilesize' => '0',
+                          'tb_autoresizewidth' => '0',
+                          'tb_autoresizeheight' => '0',
+                          'tb_thumbsize' => '80',
+                          'tb_imagequality' => '80',
+                          'tb_thumbquality' => '80',
+                          'tb_allowedimagestypes' => '*.jpg, *.jpeg, *.gif, *.png',
+                          'tb_allowedmediatypes' => '*.swf, *.dcr, *.mov, *.qt, *.mpg, *.mp3, *.mp4, *.mpeg, *.avi, *.wmv, *.wm, *.asf, *.asx, *.wmx, *.wvx, *.rm, *.ra, *.ram',
+                          'tb_allowedfiletypes' => '*.*'
                          );
     }
 
@@ -104,7 +138,25 @@ if (!$version || $version == null) {
 }
 else {  // Found an old post-2.0.0 RC1 install
     $settings = Plugin::getAllSettings('tinymce');
-    $settings['version'] = '3.0.0';
+    $settings = array('version' => '3.0.0',
+                      'tb_obfuscate' => 'sukthvgnhgliuhgldutnvlru',
+                      'tb_docroot' => '/var/www',
+                      'tb_unixpermissions' => '0755',
+                      'tb_imagepath' => '/wolfcms/public/images/',
+                      'tb_mediapath' => '/wolfcms/public/media/',
+                      'tb_filepath' => '/wolfcms/public/files/',
+                      'tb_maximagesize' => '0',
+                      'tb_maxmediasize' => '0',
+                      'tb_maxfilesize' => '0',
+                      'tb_autoresizewidth' => '0',
+                      'tb_autoresizeheight' => '0',
+                      'tb_thumbsize' => '80',
+                      'tb_imagequality' => '80',
+                      'tb_thumbquality' => '80',
+                      'tb_allowedimagestypes' => '*.jpg, *.jpeg, *.gif, *.png',
+                      'tb_allowedmediatypes' => '*.swf, *.dcr, *.mov, *.qt, *.mpg, *.mp3, *.mp4, *.mpeg, *.avi, *.wmv, *.wm, *.asf, *.asx, *.wmx, *.wvx, *.rm, *.ra, *.ram',
+                      'tb_allowedfiletypes' => '*.*'
+                     );
 
     // Store settings.
     if (Plugin::setAllSettings($settings, 'tinymce'))

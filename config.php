@@ -23,19 +23,18 @@ function substrtruncate($string, $needle) {
     return substr($string, 0, strrpos($string, $needle)+1);
 }
 
-(include_once substrtruncate($_SERVER['SCRIPT_FILENAME'], '/plugins').'../config.php') or die('TinyMCE plugin - unable to load Wolf CMS config file.');
-(include_once substrtruncate($_SERVER['SCRIPT_FILENAME'], '/plugins').'/Framework.php') or die('TinyMCE plugin - unable to load Framework.');
+    (include_once substrtruncate(dirname(__FILE__), '/plugins').'../config.php') or die('TinyMCE plugin - unable to load Wolf CMS config file.');
+    (include_once substrtruncate(dirname(__FILE__), '/plugins').'/Framework.php') or die('TinyMCE plugin - unable to load Framework.');
 
-// Setup variables
-$tablename         = TABLE_PREFIX.'plugin_settings';        // Wolf CMS plugin settings tablename.
-$image_list_dir    = '';
-$image_public_path = 'undefined';
-$preview_css       = '';
-$listhidden        = 0;
-$settings          = array();
+    // Setup variables
+    $tablename         = TABLE_PREFIX.'plugin_settings';        // Wolf CMS plugin settings tablename.
+    $image_list_dir    = '';
+    $image_public_path = 'undefined';
+    $preview_css       = '';
+    $listhidden        = 0;
+    $settings          = array();
 
-// Setup DB connection
-if (USE_PDO) {
+    // Setup DB connection
     try {
         $PDO = new PDO(DB_DSN, DB_USER, DB_PASS);
     }
@@ -45,34 +44,31 @@ if (USE_PDO) {
 
     if ($PDO->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql')
         $PDO->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
-}
-else {
-    include_once(substrtruncate($_SERVER['SCRIPT_FILENAME'], '/plugins').'/libraries/DoLite.php') or die('TinyMCE plugin - unable to load DoLite library.');
-    $PDO = new DoLite(DB_DSN, DB_USER, DB_PASS);
-}
 
-// Get a DB connection
-Record::connection($PDO);
-$PDO = Record::getConnection();
-$PDO->exec("set names 'utf8'");
+    // Get a DB connection
+    Record::connection($PDO);
+    $PDO = Record::getConnection();
+    $PDO->exec("set names 'utf8'");
 
-// Query the DB for the plugin settings.
-$sql = "SELECT name,value FROM $tablename WHERE plugin_id='tinymce'";
-$stmt = $PDO->prepare($sql);
-$stmt->execute();
+    // Query the DB for the plugin settings.
+    $sql = "SELECT name,value FROM $tablename WHERE plugin_id='tinymce'";
+    $stmt = $PDO->prepare($sql);
+    $stmt->execute();
 
-// Build settings array with tinymce plugin settings
-while ($obj = $stmt->fetchObject()) {
-    $settings[$obj->name] = $obj->value;
-}
+    // Build settings array with tinymce plugin settings
+    while ($obj = $stmt->fetchObject()) {
+        $settings[$obj->name] = $obj->value;
+    }
 
-// Update settings
-if ($settings) {
-    $image_list_dir = $settings['imagesdir'];
-    $image_public_path = $settings['imagesuri'];
-    $preview_css = $settings['cssuri'];
-    $listhidden = $settings['listhidden'];
-}
+    // Update settings
+    if ($settings) {
+        $image_list_dir = $settings['imagesdir'];
+        $image_public_path = $settings['imagesuri'];
+        $preview_css = $settings['cssuri'];
+        $listhidden = $settings['listhidden'];
+        AuthUser::load();
+        $tb_language = (AuthUser::isLoggedIn()) ? AuthUser::getRecord()->language : Setting::get('language');
+    }
 
 // The 'g' argument is set, so we want to retrieve something.
 if (isset($_GET['g'])) {

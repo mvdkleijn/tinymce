@@ -12,15 +12,18 @@ $pluginDir = dirname($_SERVER['PHP_SELF']);
 tinyMCE.init({
     mode : "none",
 	theme : "advanced",
-	plugins : "table,fullscreen,preview,contextmenu,advimage,codeprotect,media",
+	plugins : "table,fullscreen,preview,contextmenu,advimage,codeprotect,media,pagebreak",
 	theme_advanced_buttons1 : "bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright, justifyfull,bullist,numlist,undo,redo,link,unlink,|,image,media,styleselect,formatselect,|,fullscreen,code",
-	theme_advanced_buttons2 : "tablecontrols,|,hr,removeformat,|,outdent,indent,blockquote,|,preview",
+	theme_advanced_buttons2 : "pagebreak,|,tablecontrols,|,hr,removeformat,|,outdent,indent,blockquote,|,preview",
 	theme_advanced_buttons3 : "",
 	theme_advanced_toolbar_location : "top",
 	theme_advanced_toolbar_align : "left",
 	theme_advanced_statusbar_location : "bottom",
 	theme_advanced_resize_horizontal : false,
 	theme_advanced_resizing : true,
+
+    // Page break seperator
+    pagebreak_separator : "<!-- read more -->",
 
 	// Some performance enhancements according to TinyMCE website
 	button_tile_map : true,

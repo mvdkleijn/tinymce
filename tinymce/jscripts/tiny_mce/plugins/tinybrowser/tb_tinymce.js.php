@@ -3,6 +3,7 @@ require_once("config_tinybrowser.php");
 
 $tbpath = pathinfo($_SERVER['SCRIPT_NAME']);
 $tbmain = $tbpath['dirname'].'/tinymce/jscripts/tiny_mce/plugins/tinybrowser/tinybrowser.php';
+
 ?>
 
  function tinyBrowser (field_name, url, type, win) {

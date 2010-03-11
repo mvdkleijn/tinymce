@@ -17,6 +17,8 @@ TinyBrowser 1.41 - A TinyMCE file browser (C) 2008  Bryn Jones
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+(include_once dirname(__FILE__).'/../../../../../config.php') or die('TinyMCE plugin - unable to load TinyMCE plugin config file.');
+
 // switch off error handling, to use custom handler
 error_reporting(0);
 
@@ -26,62 +28,62 @@ set_time_limit(240);
 $tinybrowser = array();
 
 // Session control and security check - to enable please uncomment
-//if(isset($_GET['sessidpass'])) session_id($_GET['sessidpass']); // workaround for Flash session bug
-//session_start();
-//$tinybrowser['sessioncheck'] = 'authenticated_user'; //name of session variable to check
+if(isset($_GET['sessidpass'])) session_id($_GET['sessidpass']); // workaround for Flash session bug
+session_start();
+$tinybrowser['sessioncheck'] = 'wolf_auth_user'; //name of session variable to check
 
 // Random string used to secure Flash upload if session control not enabled - be sure to change!
-$tinybrowser['obfuscate'] = 'dslukthdlivuthdfgdrutghdfxduhrfilguv';
+$tinybrowser['obfuscate'] = $settings['tb_obfuscate'];
 
 // Set default language (ISO 639-1 code)
-$tinybrowser['language'] = 'en';
+$tinybrowser['language'] = $tb_language;
 
 // Set the integration type (TinyMCE is default)
 $tinybrowser['integration'] = 'tinymce'; // Possible values: 'tinymce', 'fckeditor'
 
 // Default is rtrim($_SERVER['DOCUMENT_ROOT'],'/') (suitable when using absolute paths, but can be set to '' if using relative paths)
 //$tinybrowser['docroot'] = rtrim($_SERVER['DOCUMENT_ROOT'],'/');
-$tinybrowser['docroot'] = 'http://localhost/wolfcms/';
+$tinybrowser['docroot'] = $settings['tb_docroot'];
 
 // Folder permissions for Unix servers only
 $tinybrowser['unixpermissions'] = 0755;
 
 // File upload paths (set to absolute by default)
-$tinybrowser['path']['image'] = '/var/www/wolfcms/public/tb/images/'; // Image files location - also creates a '_thumbs' subdirectory within this path to hold the image thumbnails
-$tinybrowser['path']['media'] = '/var/www/wolfcms/public/tb/media/'; // Media files location
-$tinybrowser['path']['file']  = '/var/www/wolfcms/public/tb/files/'; // Other files location
+$tinybrowser['path']['image'] = $settings['tb_imagepath']; //'/wolfcms/public/images/'; // Image files location - also creates a '_thumbs' subdirectory within this path to hold the image thumbnails
+$tinybrowser['path']['media'] = $settings['tb_mediapath']; // Media files location
+$tinybrowser['path']['file']  = $settings['tb_filepath']; // Other files location
 
 // File link paths - these are the paths that get passed back to TinyMCE or your application (set to equal the upload path by default)
-$tinybrowser['link']['image'] = '/wolfcms/public/tb/images/'; //$tinybrowser['path']['image']; // Image links
-$tinybrowser['link']['media'] = '/wolfcms/public/tb/media/'; //$tinybrowser['path']['media']; // Media links
-$tinybrowser['link']['file']  = '/wolfcms/public/tb/files/'; //$tinybrowser['path']['file']; // Other file links
+$tinybrowser['link']['image'] = $settings['tb_imagepath']; // Image links
+$tinybrowser['link']['media'] = $settings['tb_mediapath']; // Media links
+$tinybrowser['link']['file']  = $settings['tb_filepath']; // Other file links
 
 // File upload size limit (0 is unlimited)
-$tinybrowser['maxsize']['image'] = 0; // Image file maximum size
-$tinybrowser['maxsize']['media'] = 0; // Media file maximum size
-$tinybrowser['maxsize']['file']  = 0; // Other file maximum size
+$tinybrowser['maxsize']['image'] = (int) $settings['tb_maximagesize']; // 0 - Image file maximum size
+$tinybrowser['maxsize']['media'] = (int) $settings['tb_maxmediasize']; // Media file maximum size
+$tinybrowser['maxsize']['file']  = (int) $settings['tb_maxfilesize']; // Other file maximum size
 
 // Image automatic resize on upload (0 is no resize)
-$tinybrowser['imageresize']['width']  = 0;
-$tinybrowser['imageresize']['height'] = 0;
+$tinybrowser['imageresize']['width']  = (int) $settings['tb_autoresizewidth']; // 0
+$tinybrowser['imageresize']['height'] = (int) $settings['tb_autoresizeheight'];
 
 // Image thumbnail source (set to 'path' by default - shouldn't need changing)
 $tinybrowser['thumbsrc'] = 'path'; // Possible values: path, link
 
 // Image thumbnail size in pixels
-$tinybrowser['thumbsize'] = 80;
+$tinybrowser['thumbsize'] = (int) $settings['tb_thumbsize']; //80;
 
 // Image and thumbnail quality, higher is better (1 to 99)
-$tinybrowser['imagequality'] = 80; // only used when resizing or rotating
-$tinybrowser['thumbquality'] = 80;
+$tinybrowser['imagequality'] = (int) $settings['tb_imagequality']; // 80; // only used when resizing or rotating
+$tinybrowser['thumbquality'] = (int) $settings['tb_thumbquality'];
 
 // Date format, as per php date function
 $tinybrowser['dateformat'] = 'd/m/Y H:i';
 
 // Permitted file extensions
-$tinybrowser['filetype']['image'] = '*.jpg, *.jpeg, *.gif, *.png'; // Image file types
-$tinybrowser['filetype']['media'] = '*.swf, *.dcr, *.mov, *.qt, *.mpg, *.mp3, *.mp4, *.mpeg, *.avi, *.wmv, *.wm, *.asf, *.asx, *.wmx, *.wvx, *.rm, *.ra, *.ram'; // Media file types
-$tinybrowser['filetype']['file']  = '*.*'; // Other file types
+$tinybrowser['filetype']['image'] = $settings['tb_allowedimagestypes']; // '*.jpg, *.jpeg, *.gif, *.png'; // Image file types
+$tinybrowser['filetype']['media'] = $settings['tb_allowedmediatypes']; //'*.swf, *.dcr, *.mov, *.qt, *.mpg, *.mp3, *.mp4, *.mpeg, *.avi, *.wmv, *.wm, *.asf, *.asx, *.wmx, *.wvx, *.rm, *.ra, *.ram'; // Media file types
+$tinybrowser['filetype']['file']  = $settings['tb_allowedfiletypes'];//'*.*'; // Other file types
 
 // Prohibited file extensions
 $tinybrowser['prohibited'] = array('php','php3','php4','php5','phtml','asp','aspx','ascx','jsp','cfm','cfc','pl','bat','exe','dll','reg','cgi', 'sh', 'py','asa','asax','config','com','inc');
