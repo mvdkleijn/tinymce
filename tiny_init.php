@@ -42,11 +42,11 @@ tinyMCE.init({
 
     // Plugin configs
     // Plugin: Page break seperator
-    pagebreak_separator : "<!-- more -->",
+    //pagebreak_separator : "<!-- more -->",
 
     // Toolbar layout
-	theme_advanced_buttons1 : "bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright, justifyfull,bullist,numlist,undo,redo,link,unlink,|,image,media,styleselect,formatselect,|,fullscreen,code",
-	theme_advanced_buttons2 : "pagebreak,|,tablecontrols,|,hr,removeformat,|,outdent,indent,blockquote,|,preview",
+	theme_advanced_buttons1 : "styleselect,formatselect,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,|,undo,redo,link,unlink,|,image,media",
+	theme_advanced_buttons2 : "tablecontrols,|outdent,indent,blockquote,|,hr,pagebreak,|,removeformat,preview,fullscreen,code",
 	theme_advanced_buttons3 : "",
 
     //Example of how to add your stylesheet styles to the styles dropdown box in TinyMCE

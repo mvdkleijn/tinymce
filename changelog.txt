@@ -7,13 +7,16 @@ Sigla:
 . other development
 ======
 
-3.0.0 - released 2009-08-30
+3.0.0 - released 2010-05-05
 
-NOTE: requires Wolf CMS version 0.5.5
+NOTE: requires Wolf CMS version 0.6.0
 
++ Added codeprotect plugin 2.1 to allow PHP code to remain untouched by TinyMCE.
++ Added pagebreak plugin.
 - Fixed comma bug in images_list.php
-. Updated TinyMCE to version 3.2.5
-. Updated for Wolf CMS 0.5.5
+. Updated TinyMCE to version 3.4.4
+. Updated for Wolf CMS 0.6.0
+. Cleaned up the default toolbar layout
 . Cleaned up code
 
 

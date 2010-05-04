@@ -1,7 +1,8 @@
 == TinyMCE plugin for Wolf CMS ==
 
 This plugin was created by Martijn van der Kleijn (www.vanderkleijn.net) for Wolf CMS (www.wolfcms.org).
-The plugin uses an un-altered, stock TinyMCE download which can be found in the tinymce subdirectory of the plugin.
+The plugin uses an un-altered, stock TinyMCE download, apart from the addition of the codeprotect plugin,
+which can be found in the tinymce subdirectory of the plugin.
 
 For TinyMCE itself, see http://tinymce.moxiecode.com
 
@@ -44,3 +45,6 @@ Your TinyMCE plugin should now be ready for use.
 
 2 - You can upgrade the TinyMCE version that this plugin uses at any time yourself by downloading
     the latest TinyMCE version and unpacking it to the tinymce subdirectory of this plugin.
+
+    If you want to keep intact the protection of PHP code, you will need to backup the codeprotect TinyMCE
+    plugin. You can find this in ..../tinymce/jscripts/tiny_mce/plugins

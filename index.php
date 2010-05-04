@@ -29,7 +29,7 @@
  * @version 3.0.0
  * @since Wolf version 0.5.5
  * @license http://www.gnu.org/licenses/gpl.html GPL License
- * @copyright Martijn van der Kleijn, 2008,2009
+ * @copyright Martijn van der Kleijn, 2008,2009,2010
  */
 
 Plugin::setInfos(array(
@@ -41,7 +41,7 @@ Plugin::setInfos(array(
     'author'      => 'Martijn van der Kleijn',
     'website'     => 'http://www.vanderkleijn.net/wolf-cms.html',
     'update_url'  => 'http://www.vanderkleijn.net/plugins.xml',
-    'require_wolf_version' => '0.5.5'
+    'require_wolf_version' => '0.6.0'
 ));
 
 Filter::add('tinymce', 'tinymce/filter_tinymce.php');
