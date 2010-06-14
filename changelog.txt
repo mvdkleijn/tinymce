@@ -7,7 +7,7 @@ Sigla:
 . other development
 ======
 
-3.0.0 - released 2010-05-05
+3.0.0 - released 2010-06-15
 
 NOTE: requires Wolf CMS version 0.6.0
 

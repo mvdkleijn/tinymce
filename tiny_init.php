@@ -28,7 +28,7 @@ tinyMCE.init({
 	theme_advanced_resize_horizontal : false,
 	theme_advanced_resizing : true,
 
-    // Preview content in system\'s style
+    // Preview content in systems style
     content_css : "<?php echo $pluginDir; ?>/config.php?g=css",
 
 	// Dropdown lists for link/image/media/template dialogs
