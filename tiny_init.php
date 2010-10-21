@@ -47,7 +47,7 @@ tinyMCE.init({
     // Toolbar layout
 	theme_advanced_buttons1 : "styleselect,formatselect,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,|,undo,redo,link,unlink,|,image,media",
 	theme_advanced_buttons2 : "tablecontrols,|outdent,indent,blockquote,|,hr,pagebreak,|,removeformat,preview,fullscreen,code",
-	theme_advanced_buttons3 : "",
+	theme_advanced_buttons3 : ""
 
     //Example of how to add your stylesheet styles to the styles dropdown box in TinyMCE
     //theme_advanced_styles : "Normal text=normaltext, Align left=align-left, Align right=align-right"
