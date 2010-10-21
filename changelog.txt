@@ -7,6 +7,13 @@ Sigla:
 . other development
 ======
 
+3.0.1 - released 2010-10-21
+
+NOTE: requires Wolf CMS version 0.6.0
+
+- Fixed comma bug in tiny_init.php causing problems for IE
+
+
 3.0.0 - released 2010-06-15
 
 NOTE: requires Wolf CMS version 0.6.0
