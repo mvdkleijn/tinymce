@@ -3,6 +3,9 @@
     Apart from the normal TinyMCE usage, a few special features have been implemented which are described here in more detail.
     Please read carefully on how to use these features.
 </p>
+<p>
+    Note: this plugin requires Wolf CMS 0.7.3 starting from release 3.5.0.
+</p>
 <h3><?php echo __('Codeprotect and Pagebreak');?></h3>
 <p>
     In release 3.0.0 two new features were added/turned on that should simplify things.

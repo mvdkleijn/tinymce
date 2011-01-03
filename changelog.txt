@@ -7,6 +7,14 @@ Sigla:
 . other development
 ======
 
+3.5.0 - released ??
+
+. Updated TinyMCE to version 3.9.3
+. Updated to support Wolf CMS 0.7.3
+
+Note: does NOT support Wolf CMS < 0.7.3
+
+
 3.0.1 - released 2010-10-21
 
 NOTE: requires Wolf CMS version 0.6.0

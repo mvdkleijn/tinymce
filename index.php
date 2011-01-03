@@ -36,12 +36,12 @@ Plugin::setInfos(array(
     'id'          => 'tinymce',
     'title'       => 'TinyMCE Editor',
     'description' => 'Allows you to use the TinyMCE text editor.',
-    'version'     => '3.0.0',
+    'version'     => '3.5.0',
     'license'     => 'GPLv3',
     'author'      => 'Martijn van der Kleijn',
     'website'     => 'http://www.vanderkleijn.net/wolf-cms.html',
     'update_url'  => 'http://www.vanderkleijn.net/plugins.xml',
-    'require_wolf_version' => '0.6.0'
+    'require_wolf_version' => '0.7.3'
 ));
 
 Filter::add('tinymce', 'tinymce/filter_tinymce.php');

@@ -66,7 +66,7 @@ if (!$version || $version == null) {
         $result = $PDO->query($sql);
 
         if ($result && $row = $result->fetchObject()) {
-            $settings = array('version' => '3.0.0',
+            $settings = array('version' => '3.5.0',
                               'listpublished' => $row->listpublished,
                               'listhidden' => $row->listhidden,
                               'imagesdir' => $row->imagesdir,
@@ -99,7 +99,7 @@ if (!$version || $version == null) {
     }
     // This is a clean install.
     else {
-        $settings = array('version' => '3.0.0',
+        $settings = array('version' => '3.5.0',
                           'listpublished' => 1,
                           'listhidden' => 0,
                           'imagesdir' => '/home/user/www/public/images',
@@ -138,7 +138,7 @@ if (!$version || $version == null) {
 }
 else {  // Found an old post-2.0.0 RC1 install
     $settings = Plugin::getAllSettings('tinymce');
-    $settings = array('version' => '3.0.0',
+    $settings = array('version' => '3.5.0',
                       'tb_obfuscate' => 'sukthvgnhgliuhgldutnvlru',
                       'tb_docroot' => '/var/www',
                       'tb_unixpermissions' => '0755',

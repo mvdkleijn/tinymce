@@ -4,7 +4,7 @@
 <h2><?php echo __('TinyMCE Editor plugin');?></h2>
 <p>
 <?php echo __('Plugin').': '.Plugin::getSetting('version', 'tinymce'); ?><br/>
-TinyMCE: v3.3.4 (2010-04-27)
+TinyMCE: v3.9.3 (2010-12-20)
 </p>
 <p>
     The TinyMCE editor plugin consists of a stock (unchanged) version of TinyMCE, except for the addition of the codeprotect plugin,
@@ -16,5 +16,9 @@ TinyMCE: v3.3.4 (2010-04-27)
 <p>
     Homepage: <a href="http://www.vanderkleijn.net/wolf-cms/plugins/tinymce.html">Wolf CMS TinyMCE plugin</a><br/>
     Homepage: <a href="http://tinymce.moxiecode.com/">TinyMCE itself</a>
+</p>
+<p>
+    Note: the TinyMCE version listed above is the one delivered with the plugin's download. It is not updated automatically
+    when you upgrade the TinyMCE version yourself.
 </p>
 </div>
