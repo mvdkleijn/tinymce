@@ -32,7 +32,7 @@ tinyMCE.init({
     
     // Toolbar layout
     theme_advanced_buttons1 : "styleselect,formatselect,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,|,undo,redo,link,unlink,|,image,media",
-    theme_advanced_buttons2 : "tablecontrols,|outdent,indent,blockquote,|,hr,pagebreak,|,removeformat,preview,fullscreen,code",
+    theme_advanced_buttons2 : "tablecontrols,|,outdent,indent,blockquote,|,hr,pagebreak,|,removeformat,preview,fullscreen,code",
     theme_advanced_buttons3 : "",
     
     // Preview content in systems style
