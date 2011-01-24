@@ -9,13 +9,13 @@
  ***********************************************/
 
 $(document).ready(function() {
-    $('.filter-selector').bind('wolfSwitchFilterOut', function(event, filtername, elem) {
+    $('.filter-selector').live('wolfSwitchFilterOut', function(event, filtername, elem) {
         if (filtername == 'tinymce') {
             tinyMCE.execCommand('mceRemoveControl', true, elem.attr('id'));
         }
     });
     
-    $('.filter-selector').bind('wolfSwitchFilterIn', function(event, filtername, elem) {
+    $('.filter-selector').live('wolfSwitchFilterIn', function(event, filtername, elem) {
         if (filtername == 'tinymce') {
             tinyMCE.execCommand('mceAddControl', true, elem.attr('id'));
         }
