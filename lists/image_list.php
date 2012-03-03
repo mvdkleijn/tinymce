@@ -29,6 +29,10 @@ $output = 'var tinyMCEImageList = new Array(';
 // Recursively build up the output
 list_dir($dir_handle,$image_list_dir,$image_public_path,true);
 
+// Repair the output if the root directory of images does not contain any images, but subfolders do
+// Remove the comma from the Array definition
+$output = str_replace('= new Array(,[','= new Array([',$output);
+
 // Close up the output
 $output .= ');';
 
