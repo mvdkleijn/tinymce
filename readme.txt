@@ -1,3 +1,6 @@
+**Status:** No longer active / archived
+
+
 == TinyMCE plugin for Wolf CMS ==
 
 This plugin was created by Martijn van der Kleijn (www.vanderkleijn.net) for Wolf CMS (www.wolfcms.org).
